@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="center">
+      <h1 class="center">Snake</h1>
+
+      <div class="controls" id="controls">
+        <label
+          >Rows: <input type="number" id="rows" value="20" min="10"
+        /></label>
+        <label
+          >Cols: <input type="number" id="cols" value="30" min="30"
+        /></label>
+        <button id="generate">Generate Grid</button>
+      </div>
+    </div>
+
+    <div id="grid"></div>
+
     <script type="module" src="./scripts/view.js"></script>
-</body>
+  </body>
 </html>
