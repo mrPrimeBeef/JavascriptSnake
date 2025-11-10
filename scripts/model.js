@@ -1,5 +1,5 @@
 import Grid from "./Grid.js";
-import Queue from "./Queue.js";
+import Queue from "./queue.js";
 
 export class GridModel {
   #grid;
