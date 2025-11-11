@@ -55,3 +55,8 @@ export function renderGrid() {
     }
   });
 }
+
+export function updateHUD(newPoints){
+  const pointsHTML = document.getElementById("points")
+  pointsHTML.innerText = `Points: ${newPoints}`;
+}

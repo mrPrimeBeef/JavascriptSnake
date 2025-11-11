@@ -2,6 +2,8 @@ import * as model from "./model.js";
 import * as view from "./view.js";
 
 let direction = "left";
+let points = -1;
+let tickTimeout;
 
 function startController() {
   view.makeGrid();
@@ -45,8 +47,25 @@ function keyPress(event) {
   }
 }
 
+function lose() {
+  console.log("Get good");
+  alert(`Game Over!\nFinal Score: ${points}`);
+  clear();
+}
+
+function clear() {
+  clearTimeout(tickTimeout);
+  direction = "left";
+  points = 0;
+  tickTimeout = null;
+  model.queue.clear();
+  view.updateHUD(0);
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+}
+
 function tick() {
-  setTimeout(tick, 500);
+   tickTimeout = setTimeout(tick, 200);
 
   let current = model.queue.head;
   while (current) {
@@ -89,17 +108,25 @@ function tick() {
       }
       break;
   }
+
+  current = model.queue.head;
+  let losecondition = false;
+
   while (current) {
     if (current.data.row === head.row && current.data.col === head.col) {
-      //TODO Game over
-
+      losecondition = true;
       break;
     }
     current = current.next;
   }
 
+  if (losecondition) {
+    lose();
+    return;
+  }
+
   if (model.getModel().get({ row: head.row, col: head.col }) === 2) {
-    model.addFood();
+    addFood();
   } else {
     model.queue.dequeue();
   }
@@ -116,7 +143,9 @@ function tick() {
 }
 
 export function addFood() {
+  points++;
   model.addFood();
+  view.updateHUD(points);
 }
 
 startController();
