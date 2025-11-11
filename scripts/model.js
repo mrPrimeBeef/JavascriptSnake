@@ -56,13 +56,11 @@ export function writeToCell({ row, col }, value) {
 }
 
 export function addFood() {
-  //TODO WRITE
-   
-  // const rows = modelGrid.rows();
-  // const cols = modelGrid.cols();
-  
-  // let randomRow = Math.floor(Math.random() * rows);
-  // let randomCol = Math.floor(Math.random() * cols);
-  
-  // modelGrid.set({ row: randomRow, col: randomCol }, 2);
+  const rows = modelGrid.rows();
+  const cols = modelGrid.cols();
+
+  let randomRow = Math.floor(Math.random() * rows);
+  let randomCol = Math.floor(Math.random() * cols);
+
+  modelGrid.set({ row: randomRow, col: randomCol }, 2);
 }

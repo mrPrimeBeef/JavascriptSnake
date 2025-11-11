@@ -26,6 +26,7 @@ export function makeGrid() {
       }
     }
     renderGrid();
+    controller.addFood();
     controller.startGame();
   });
 }

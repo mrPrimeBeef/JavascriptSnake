@@ -7,8 +7,6 @@ function startController() {
   view.makeGrid();
 
   document.addEventListener("keydown", keyPress);
-
-  tick();
 }
 
 export function createGrid(rows, cols) {
@@ -91,20 +89,22 @@ function tick() {
       }
       break;
   }
-  
-  if (model.getModel().get({ row: head.row, col: head.col }) === 2) {
-    model.queue.enqueue(head);
-  }
-
-  //TODO HERE
-  let hitSelf = false;
   while (current) {
     if (current.data.row === head.row && current.data.col === head.col) {
-      hitSelf = true;
+      //TODO Game over
+
       break;
     }
     current = current.next;
   }
+
+  if (model.getModel().get({ row: head.row, col: head.col }) === 2) {
+    model.addFood();
+  } else {
+    model.queue.dequeue();
+  }
+
+  model.queue.enqueue(head);
 
   current = model.queue.head;
   while (current) {
@@ -112,13 +112,11 @@ function tick() {
     current = current.next;
   }
 
-  model.queue.enqueue(head);
-  model.queue.dequeue();
-
-  //TODO HERE
-  model.addFood();
-
   view.renderGrid();
+}
+
+export function addFood() {
+  model.addFood();
 }
 
 startController();

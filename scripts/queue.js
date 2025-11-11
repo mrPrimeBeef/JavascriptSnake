@@ -38,10 +38,13 @@ export default class Queue {
 
   get(index) {
     const node = this.getNode(index);
-    return node ? node : null;
+    return node;
   }
 
   getNode(index) {
+    if (index < 0 || index >= this.#size) {
+      return null;
+    }
     let current = this.head;
     for (let i = 0; i < index; i++) {
       current = current.next;
